@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerrar Sesión - Django Allauth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800 p-4">
+    <div class="bg-gradient-to-b from-gray-900 to-black border-2 border-gold-500 rounded-2xl shadow-2xl p-8 md:p-10 w-full max-w-md text-center">
+        <!-- Header -->
+        <div class="mb-8">
+            <div class="inline-block p-4 bg-gradient-to-br from-red-500 to-red-700 rounded-full mb-4 animate-pulse">
+                <span class="text-5xl">🚪</span>
+            </div>
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent mb-4">
+                Cerrar Sesión
+            </h1>
+            <p class="text-gray-300 text-lg">
+                ¿Estás seguro de que quieres salir?
+            </p>
+        </div>
+
+        <!-- Info adicional -->
+        <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-4 mb-6">
+            <p class="text-gray-400 text-sm">
+                Tu sesión actual será cerrada y deberás iniciar sesión nuevamente para acceder
+            </p>
+        </div>
+
+        <!-- Formulario -->
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            
+            <!-- Botón Confirmar Cerrar Sesión -->
+            <button 
+                type="submit" 
+                class="group w-full bg-gradient-to-r from-red-500 to-red-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-red-500/50 hover:-translate-y-1 flex items-center justify-center gap-2 relative overflow-hidden"
+            >
+                <span class="relative z-10">✔️</span>
+                <span class="relative z-10">Sí, cerrar sesión</span>
+                <div class="absolute inset-0 bg-black/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+            </button>
+
+            <!-- Botón Cancelar -->
+            <a 
+                href="{% url 'home' %}" 
+                class="group block w-full bg-transparent text-gold-400 font-bold py-4 px-6 rounded-lg border-2 border-gold-500 transition-all duration-300 hover:bg-gold-500 hover:text-black hover:shadow-lg hover:shadow-gold-500/50 hover:-translate-y-1 flex items-center justify-center gap-2"
+            >
+                <span>←</span>
+                <span>Cancelar y volver</span>
+            </a>
+        </form>
+
+        <!-- Info de usuario (opcional) -->
+        {% if user.is_authenticated %}
+        <div class="mt-6 pt-6 border-t border-gray-800">
+            <p class="text-gray-500 text-sm">
+                Cerrando sesión de: 
+                <span class="text-gold-400 font-semibold">{{ user.email }}</span>
+            </p>
+        </div>
+        {% endif %}
+
+        <!-- Footer con advertencia -->
+        <div class="mt-8 bg-amber-500/10 border border-amber-500/30 rounded-lg p-3">
+            <p class="text-amber-400 text-xs flex items-center justify-center gap-2">
+                <span>⚠️</span>
+                <span>Recuerda guardar cualquier cambio antes de salir</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Decoración de fondo -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+        <div class="absolute top-20 left-20 w-72 h-72 bg-red-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-20 w-96 h-96 bg-gold-600/10 rounded-full blur-3xl"></div>
+    </div>
+</body>
+</html>

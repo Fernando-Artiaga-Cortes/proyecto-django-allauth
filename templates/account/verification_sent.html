@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación Enviada - Django Allauth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-gray-800 p-4">
+    <div class="bg-gradient-to-b from-gray-900 to-black border-2 border-gold-500 rounded-2xl shadow-2xl p-8 md:p-10 w-full max-w-md text-center">
+        <!-- Header -->
+        <div class="mb-8">
+            <div class="inline-block p-4 bg-gradient-to-br from-green-500 to-green-700 rounded-full mb-4 animate-bounce">
+                <span class="text-5xl">✅</span>
+            </div>
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 bg-clip-text text-transparent mb-4">
+                Email de Verificación Enviado
+            </h1>
+            <p class="text-gray-300 text-lg">
+                Revisa tu bandeja de entrada
+            </p>
+        </div>
+
+        <!-- Mensaje de éxito -->
+        <div class="bg-gradient-to-r from-green-500/10 to-green-600/10 border border-green-500/30 rounded-lg p-6 mb-6">
+            <p class="text-green-300 font-semibold mb-2">
+                📧 Hemos enviado un email de verificación
+            </p>
+            <p class="text-gray-400 text-sm">
+                Haz clic en el enlace del email para confirmar tu dirección
+            </p>
+        </div>
+
+        <!-- Instrucciones -->
+        <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-5 mb-6 text-left">
+            <h3 class="text-gold-400 font-bold mb-3 flex items-center gap-2">
+                <span>💡</span>
+                <span>Próximos pasos</span>
+            </h3>
+            <ol class="space-y-2 text-gray-300 text-sm">
+                <li class="flex items-start gap-2">
+                    <span class="text-gold-400 font-bold">1.</span>
+                    <span>Revisa tu bandeja de entrada (y spam)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-gold-400 font-bold">2.</span>
+                    <span>Busca el email de verificación</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-gold-400 font-bold">3.</span>
+                    <span>Haz clic en el enlace de confirmación</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-gold-400 font-bold">4.</span>
+                    <span>Tu email quedará verificado</span>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Botones -->
+        <div class="space-y-3">
+            <a href="{% url 'home' %}" 
+               class="block w-full bg-gradient-to-r from-gold-400 to-gold-600 text-black font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/50 flex items-center justify-center gap-2">
+                <span>🏠</span>
+                <span>Ir al inicio</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Decoración de fondo -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+        <div class="absolute top-20 left-20 w-72 h-72 bg-green-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-20 w-96 h-96 bg-gold-600/10 rounded-full blur-3xl"></div>
+    </div>
+</body>
+</html>
